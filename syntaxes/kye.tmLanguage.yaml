@@ -2,11 +2,20 @@ $schema: https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlangua
 name: Kye
 scopeName: source.kye
 patterns: []
-repository:  
-  keywords:
+repository:
+  comment:
+    name: comment.line.kye
+    match: ^\s*#.*$\n?
+  numeric:
+    name: constant.numeric.kye
+    match: \b\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?\b
+  regexp:
+    name: string.regexp.kye
+    begin: /
+    end: /[igm]*
     patterns:
-      - name: keyword.control.kye
-        match: \b(if|while|for|return)\b
+      - name: constant.character.escape.kye
+        match: \\.
   strings:
     name: string.quoted.double.kye
     begin: '"'
@@ -14,3 +23,21 @@ repository:
     patterns:
       - name: constant.character.escape.kye
         match: \\.
+  keywords:
+    patterns:
+      - name: keyword.control.kye
+        match: \b(if|else|assert|return|operation)\b
+      - name: keyword.operator.expression.kye
+        match: \b(in|is|and|or|not)\b
+      - name: constant.language.kye
+        match: \b(true|false|null)\b
+      - name: variable.language.kye
+        match: \b(this|super)\b
+  variables:
+    patterns:
+      - name: entity.name.type.kye
+        match: \b[A-Z]+[a-z][a-zA-Z0-9]*\b
+      - name: variable.other.kye
+        match: \b[a-z_]+[a-z_A-Z0-9]*\b
+      - name: variable.other.constant.kye
+        match: \b[A-Z_]+[A-Z0-9_]*\b

@@ -23,7 +23,7 @@
     }]
   },
   "scripts": {
-    "build": "yq '.patterns = (.repository | keys | [ .[] | { include: (\"#\" + .) }])' < ./syntaxes/kye.tmLanguage.yaml > syntaxes/kye.tmLanguage.json",
+    "build": "yq '.patterns = (.repository | keys_unsorted | [ .[] | { include: (\"#\" + .) }])' < ./syntaxes/kye.tmLanguage.yaml > ./syntaxes/kye.tmLanguage.json && cp ./syntaxes/kye.tmLanguage.json ~/.vscode/extensions/kye-syntax-highlighter/syntaxes/kye.tmLanguage.json",
     "watch": "nodemon -e yaml --exec npm run build"
   }
 }
