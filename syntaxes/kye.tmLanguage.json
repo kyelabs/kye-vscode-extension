@@ -76,7 +76,7 @@
       "patterns": [
         {
           "name": "keyword.control.kye",
-          "match": "\\b(if|else|assert|return|operation)\\b"
+          "match": "\\b(if|else|assert|return|operation|to|from|null)\\b"
         },
         {
           "name": "keyword.operator.expression.kye",
@@ -84,7 +84,7 @@
         },
         {
           "name": "constant.language.kye",
-          "match": "\\b(true|false|null)\\b"
+          "match": "\\b(TRUE|FALSE|NULL)\\b"
         },
         {
           "name": "variable.language.kye",
