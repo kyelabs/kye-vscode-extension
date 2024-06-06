@@ -1,0 +1,29 @@
+{
+  "name": "kye-syntax-highlighter",
+  "displayName": "kye-syntax-highlighter",
+  "description": "Syntax Highlighting for Kye language",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "kye",
+      "aliases": ["Kye", "kye"],
+      "extensions": [".kye"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "kye",
+      "scopeName": "source.kye",
+      "path": "./syntaxes/kye.tmLanguage.json"
+    }]
+  },
+  "scripts": {
+    "build": "yq '.patterns = (.repository | keys | [ .[] | { include: (\"#\" + .) }])' < ./syntaxes/kye.tmLanguage.yaml > syntaxes/kye.tmLanguage.json",
+    "watch": "nodemon -e yaml --exec npm run build"
+  }
+}
