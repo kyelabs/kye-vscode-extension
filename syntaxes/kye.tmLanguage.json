@@ -16,7 +16,13 @@
       "include": "#strings"
     },
     {
+      "include": "#format"
+    },
+    {
       "include": "#keywords"
+    },
+    {
+      "include": "#decorator"
     },
     {
       "include": "#variables"
@@ -33,25 +39,38 @@
     },
     "regexp": {
       "name": "string.regexp.kye",
-      "begin": "/",
-      "end": "/[igm]*",
+      "match": "/[^/](?:(\\\\.)|[^/])*/[img]*",
+      "captures": {
+        "1": {
+          "name": "constant.character.escape.kye"
+        }
+      }
+    },
+    "strings": {
       "patterns": [
         {
-          "name": "constant.character.escape.kye",
-          "match": "\\\\."
+          "name": "string.quoted.double.kye",
+          "match": "\"(?:(\\\\.)|[^\"])*\"",
+          "captures": {
+            "1": {
+              "name": "constant.character.escape.kye"
+            }
+          }
+        },
+        {
+          "name": "string.quoted.single.kye",
+          "match": "'(?:(\\\\.)|[^'])*'",
+          "captures": {
+            "1": {
+              "name": "constant.character.escape.kye"
+            }
+          }
         }
       ]
     },
-    "strings": {
-      "name": "string.quoted.double.kye",
-      "begin": "\"",
-      "end": "\"",
-      "patterns": [
-        {
-          "name": "constant.character.escape.kye",
-          "match": "\\\\."
-        }
-      ]
+    "format": {
+      "name": "entity.name.tag.kye",
+      "match": "<[^ >]+>"
     },
     "keywords": {
       "patterns": [
@@ -72,6 +91,10 @@
           "match": "\\b(this|super)\\b"
         }
       ]
+    },
+    "decorator": {
+      "name": "entity.name.function.decorator.kye",
+      "match": "@([a-z]\\w*\\.)*[a-z]\\w*"
     },
     "variables": {
       "patterns": [

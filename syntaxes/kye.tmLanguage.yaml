@@ -11,18 +11,25 @@ repository:
     match: \b\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?\b
   regexp:
     name: string.regexp.kye
-    begin: /
-    end: /[igm]*
-    patterns:
-      - name: constant.character.escape.kye
-        match: \\.
+    match: /[^/](?:(\\.)|[^/])*/[img]*
+    captures:
+      1:
+        name: constant.character.escape.kye
   strings:
-    name: string.quoted.double.kye
-    begin: '"'
-    end: '"'
     patterns:
-      - name: constant.character.escape.kye
-        match: \\.
+      - name: string.quoted.double.kye
+        match: '"(?:(\\.)|[^"])*"'
+        captures:
+          1:
+            name: constant.character.escape.kye
+      - name: string.quoted.single.kye
+        match: "'(?:(\\\\.)|[^'])*'"
+        captures:
+          1:
+            name: constant.character.escape.kye
+  format:
+    name: entity.name.tag.kye
+    match: <[^ >]+>
   keywords:
     patterns:
       - name: keyword.control.kye
@@ -33,6 +40,9 @@ repository:
         match: \b(true|false|null)\b
       - name: variable.language.kye
         match: \b(this|super)\b
+  decorator:
+    name: entity.name.function.decorator.kye
+    match: '@([a-z]\w*\.)*[a-z]\w*'
   variables:
     patterns:
       - name: entity.name.type.kye
