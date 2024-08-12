@@ -1,8 +1,11 @@
 {
-  "name": "kye-syntax-highlighter",
-  "displayName": "kye-syntax-highlighter",
+  "name": "kye",
+  "displayName": "Kye Language",
   "description": "Syntax Highlighting for Kye language",
+  "icon": "images/icon.png",
   "version": "0.0.1",
+  "publisher": "kyelabs",
+  "repository": "https://github.com/kyelabs/kye-vscode-extension",
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -23,7 +26,8 @@
     }]
   },
   "scripts": {
-    "build": "yq '.patterns = (.repository | keys_unsorted | [ .[] | { include: (\"#\" + .) }])' < ./syntaxes/kye.tmLanguage.yaml > ./syntaxes/kye.tmLanguage.json && cp ./syntaxes/kye.tmLanguage.json ~/.vscode/extensions/kye-syntax-highlighter/syntaxes/kye.tmLanguage.json",
-    "watch": "nodemon -e yaml --exec npm run build"
+    "vscode:prepublish": "npm run compile",
+    "compile": "yq '.patterns = (.repository | keys_unsorted | [ .[] | { include: (\"#\" + .) }])' < ./syntaxes/kye.tmLanguage.yaml > ./syntaxes/kye.tmLanguage.json",
+    "watch": "nodemon -e yaml --exec npm run compile"
   }
 }
